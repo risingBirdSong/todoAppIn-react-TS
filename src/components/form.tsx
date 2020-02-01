@@ -43,9 +43,7 @@ class TodoForm extends React.Component<FormProp, TodoI> {
       <div className="container">
         <form onSubmit={this.sendStateBackUp}>
           <ul className="flex-outer">
-            <li>
-              <label className="create">create a new todo</label>
-            </li>
+            <p className="create">create a new todo</p>
             <li>
               <label htmlFor="complete-id">complete</label>
               <input
@@ -80,7 +78,7 @@ class TodoForm extends React.Component<FormProp, TodoI> {
               />
             </li>
             <li>
-              <button>submit new task </button>
+              <button className="MyButton">submit new task </button>
             </li>
           </ul>
         </form>

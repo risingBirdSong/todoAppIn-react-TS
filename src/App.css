@@ -2,7 +2,8 @@ body {
   font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
   background: #3aafab;
   color: #fff;
-  padding: 50px 0;
+  padding: 2px 0;
+  margin: 2px;
 }
 
 header {
@@ -10,15 +11,22 @@ header {
   background-color: purple;
   align-items: center;
   justify-content: center;
-  height: 13em;
-  margin: 1em;
-  padding: 1em;
+  height: 5em;
+  margin: 0.4em;
+  padding: 0.4em;
+}
+
+.content {
+  display: flex;
+  margin: 0.5em;
+  padding: 0.5em;
+  justify-content: space-around;
 }
 
 header h1,
 h2,
 h3 {
-  color: blueviolet;
+  color: aliceblue;
   margin: 10px;
   padding: 10px;
 }
@@ -28,7 +36,8 @@ h3 {
 }
 
 .flex-outer {
-  width: 100%;
+  vertical-align: middle;
+  width: fit-content;
   list-style-type: none;
 }
 
@@ -44,7 +53,38 @@ h3 {
   margin: 3px;
 }
 
-.create {
+.flex-outer > .create {
+  text-align: center;
   font-size: x-large;
   color: darkblue;
+}
+.todo-item {
+  margin: 0.3em;
+  color: darkblue;
+  padding: 0.3em;
+  border: 2px double darkslateblue;
+  border-radius: 0.5em;
+}
+
+.todoHolder {
+  background-color: lightslategray;
+  display: flex;
+  width: fit-content;
+}
+
+.markerSpan {
+  font-size: small;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: darkred;
+  font-style: oblique;
+}
+
+.MyButton {
+  background-color: black;
+  color: whitesmoke;
+  font-size: large;
+  border: 2px solid rgb(129, 81, 153);
+  border-radius: 2px;
+  margin: 0.3em;
+  padding: 0.3em;
 }

@@ -10,10 +10,19 @@ const TodoComp = ({ props }: { props: TodoI }) => {
   let completeString = props.complete ? "yep" : "nope";
 
   return (
-    <div>
-      <h3>{props.task}</h3>
-      <p>{props.description}</p>
-      <p>{completeString}</p>
+    <div className="todo-item">
+      <h3>
+        {" "}
+        <span className="markerSpan"> Task -></span> {props.task}
+      </h3>
+      <p>
+        <span className="markerSpan">Description -></span> {props.description}
+      </p>
+      <p>
+        <span className="markerSpan"> Completed -></span> {completeString}
+      </p>
+      <button className="MyButton">edit todo</button>
+      <button className="MyButton">delete todo</button>
     </div>
   );
 };
