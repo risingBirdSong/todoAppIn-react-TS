@@ -11,15 +11,28 @@ import { TodoHolder } from "./components/todoHolder";
 interface AppState {
   todosList: TodoI[];
   showForm: boolean;
+  removeMe: TodoI[] | null;
 }
 class App extends React.Component<any, AppState> {
   constructor() {
     super({});
     this.state = {
       todosList: todos,
-      showForm: false
+      showForm: false,
+      removeMe: null
     };
   }
+
+  removeTask = (id: number) => {
+    console.log(id);
+    let foundIndex = this.state.todosList.findIndex(item => {
+      return item.id === id;
+    });
+    this.setState(prevState => ({
+      removeMe: prevState.todosList.splice(foundIndex, 1),
+      todosList: prevState.todosList
+    }));
+  };
 
   addTodo = (newTodo: TodoI) => {
     this.setState(prevState => ({
@@ -43,7 +56,10 @@ class App extends React.Component<any, AppState> {
           <div className="content">
             <TodoForm appendTodo={this.addTodo} />
             <button onClick={this.flip_form_visibility}>form visiblity</button>
-            <TodoHolder todoList={this.state.todosList} />
+            <TodoHolder
+              deleteFunc={this.removeTask}
+              todoList={this.state.todosList}
+            />
           </div>
         </div>
       );
@@ -61,7 +77,10 @@ class App extends React.Component<any, AppState> {
             </button>
           </div>
           <div className="content">
-            <TodoHolder todoList={this.state.todosList} />
+            <TodoHolder
+              deleteFunc={this.removeTask}
+              todoList={this.state.todosList}
+            />
           </div>
         </div>
       );

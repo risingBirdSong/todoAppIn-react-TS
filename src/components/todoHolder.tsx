@@ -4,6 +4,7 @@ import { TodoComp } from "./TodoComponent";
 
 interface TodoHolderProps {
   todoList: TodoI[];
+  deleteFunc: (id: number) => void;
 }
 
 class TodoHolder extends React.Component<TodoHolderProps> {
@@ -15,7 +16,12 @@ class TodoHolder extends React.Component<TodoHolderProps> {
     return (
       <div>
         {this.props.todoList.map((item, idx) => {
-          return <TodoComp key={idx} props={{ ...item }} />;
+          console.log("props receiving from parent", this.props);
+          let bundle = {
+            removeFunc: this.props.deleteFunc,
+            ...item
+          };
+          return <TodoComp key={idx} props={{ ...bundle }} />;
         })}
       </div>
     );

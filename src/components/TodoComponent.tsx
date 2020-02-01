@@ -4,11 +4,20 @@ export interface TodoI {
   complete: boolean;
   task: string;
   description: string;
-  id : number;
+  id: number;
+  removeFunc?: (id: number) => void;
 }
 
 const TodoComp = ({ props }: { props: TodoI }) => {
   let completeString = props.complete ? "yep" : "nope";
+
+  let handleDelete = () => {
+    if (typeof props.removeFunc === "function") {
+      props.removeFunc(props.id);
+    } else {
+      console.log("no", props);
+    }
+  };
 
   return (
     <div className="todo-item">
@@ -22,8 +31,11 @@ const TodoComp = ({ props }: { props: TodoI }) => {
       <p>
         <span className="markerSpan"> Completed -></span> {completeString}
       </p>
+      <p> the id {props.id}</p>
       <button className="MyButton">edit todo</button>
-      <button className="MyButton">delete todo</button>
+      <button onClick={handleDelete} className="MyButton">
+        delete todo
+      </button>
     </div>
   );
 };
