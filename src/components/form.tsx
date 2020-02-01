@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { TodoI } from "./TodoComponent";
+// prettier-ignore
 
 type inputOrTextArea =
   | React.ChangeEvent<HTMLInputElement>
@@ -9,13 +10,23 @@ interface FormProp {
   appendTodo: (event: any) => void;
 }
 
-class TodoForm extends React.Component<FormProp, TodoI> {
+interface formStateI {
+  complete: boolean;
+  task: string;
+  description: string;
+  id: number | undefined;
+  remaining: number[];
+}
+
+class TodoForm extends React.Component<FormProp, formStateI> {
   constructor() {
     super({ appendTodo: () => {} });
     this.state = {
       complete: false,
       description: "",
-      task: ""
+      task: "",
+      id: 0,
+      remaining: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
     };
   }
 
@@ -30,11 +41,19 @@ class TodoForm extends React.Component<FormProp, TodoI> {
     this.setState({
       [event.target.name as any]: event.target.value
     });
-    console.log(this.state);
   };
 
   sendStateBackUp = (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    let numForId = this.state.remaining[0];
+
+    this.setState(prevState => ({
+      id: numForId,
+      remaining: prevState.remaining.slice(1)
+    }));
+
+    console.log(this.state);
+
     this.props.appendTodo(this.state);
   };
 

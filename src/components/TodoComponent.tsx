@@ -4,6 +4,7 @@ export interface TodoI {
   complete: boolean;
   task: string;
   description: string;
+  id : number;
 }
 
 const TodoComp = ({ props }: { props: TodoI }) => {
